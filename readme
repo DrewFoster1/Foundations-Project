@@ -1,0 +1,162 @@
+# Mini Expression Compiler
+
+## Project Overview
+This project is a Java program that acts like a simple compiler for math expressions.  
+It takes an input expression, breaks it down, checks if it is valid, builds a tree, and then calculates the result.
+
+The program follows these main steps:
+1. Tokenization (break input into pieces)
+2. Parsing (check grammar and structure)
+3. Expression Tree (build structure)
+4. Evaluation (solve the expression)
+
+---
+
+## Features
+- Supports integers
+- Supports operators: +, -, *, /
+- Supports parentheses
+- Supports unary minus (example: -3)
+- Correct order of operations
+- Displays:
+  - Token list
+  - Parse success
+  - Expression tree (visual format)
+  - Final result
+- Handles errors for invalid input
+
+---
+
+## How It Works
+
+### 1. Tokenizer
+The tokenizer reads the input and breaks it into tokens.
+
+Example:
+Input:
+(3 + 2) * 5
+
+Output:
+[(, 3, +, 2, ), *, 5]
+
+---
+
+### 2. Parser
+The parser checks if the expression follows correct grammar using recursive functions.
+
+Grammar used:
+E → T (+|-) T  
+T → F (*|/) F  
+F → (E) | number  
+
+This structure also handles operator precedence automatically.
+
+---
+
+### 3. Expression Tree
+The program builds a tree where:
+- Operators are nodes
+- Numbers are leaves
+
+Example tree:
+└── -
+├── *
+│ ├── +
+│ │ ├── 3
+│ │ └── 2
+│ └── 5
+└── 1
+
+---
+
+### 4. Evaluation
+The program evaluates the tree from bottom to top to compute the result.
+
+---
+
+##  How to Run
+
+### Step 1: Compile
+javac MiniCompiler.java
+
+### Step 2: Run
+java MiniCompiler
+
+### Step 3: Enter Expression
+Example:
+(3 + 2) * 5 - 1
+
+---
+
+## Sample Output
+
+Enter expression: (3 + 2) * 5 - 1
+
+Tokens: [(, 3, +, 2, ), *, 5, -, 1]  
+Parse: Success  
+
+Expression Tree:
+
+└── -
+├── *
+│ ├── +
+│ │ ├── 3
+│ │ └── 2
+│ └── 5
+└── 1
+
+
+Result: 24
+
+---
+
+## Invalid Input Example
+
+Input:
+3 + * 5
+
+Output:
+Error: Unexpected token: *
+
+---
+
+## Test Cases
+
+### Valid Inputs
+- 3 + 4 * 2
+- (1 + 2) * (3 + 4)
+- ((3))
+- -5 + 3
+
+### Invalid Inputs
+- 3 + * 5
+- ()
+- 3 + (4 - )
+
+---
+
+## File Structure
+MiniCompiler.java  
+README.md  
+
+---
+
+## Video Demonstration
+The video shows:
+- Tokenization
+- Parsing
+- Tree building
+- Evaluation result
+
+---
+
+## Notes
+- Uses recursive descent parsing
+- Operator precedence handled by structure
+- Includes error handling
+- Tree printing uses a visual branch format for clarity
+
+---
+
+## Author
+Drew Foster
